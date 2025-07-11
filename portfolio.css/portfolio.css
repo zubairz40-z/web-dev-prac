@@ -70,6 +70,9 @@ main{
     margin: 0 auto;
 
 }
+.text-center{
+    text-align: center;
+}
 /*Banner Styles*/
 .section-title{
     color: #181818;
@@ -119,4 +122,14 @@ main{
 }
 .item-title{
     font-weight: bold;
+}
+/*skill container*/
+.skills-container{
+ display: flex;
+ gap: 24px
+}
+.skill{
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 6px 50px 0px rgba(0,0,0,0.06) ;
 }
