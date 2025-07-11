@@ -4,6 +4,7 @@ nav{
     align-items: center;
     justify-content: space-between;
     margin: 50px 200px;
+   
 
 }
 nav ul li{
@@ -52,10 +53,33 @@ nav h3{
     border-radius: 5px;
 
 }
+
 .header{
     background-image: url('../images/developer.png'), url('../images/header_bg.png');
     background-repeat: no-repeat;
     background-position: top left,bottom right;
+  
+    ;
+}
+/*shared*/
+.secondary-bg{
+    background-color: #FFF8F3;
+}
+main{
+    max-width: 1140px;
+    margin: 0 auto;
+
+}
+/*Banner Styles*/
+.section-title{
+    color: #181818;
+    font-size: 35px;
+    font-weight: bold;
+}
+.section-description{
+    color: #757575;
+    font-size: 18px;
+    
 }
 /*Banner Styles*/
 .banner{
@@ -78,4 +102,21 @@ nav h3{
 .zubair{
     width: 580px;
     height: ;680px;
+}
+/*About styles*/
+.about{
+    border-radius: 10px;
+    padding: 130px 150px ;
+    text-align: center;
+    margin-top:  130px;
+}
+.about-items{
+    display: flex;
+    justify-content: space-around;
+}
+.item-description{
+    font-weight: 600px;
+}
+.item-title{
+    font-weight: bold;
 }
