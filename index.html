@@ -1,210 +1,507 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Devolopment Portfolio</title>
-    <link rel="stylesheet" href="portfolio.css/portfolio.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Md Zubair Ibne Zahir | Junior Web Developer</title>
 
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Font (optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: "Open Sans", sans-serif; }
+  </style>
 </head>
-<body class="open-sans-style">
-<header class="header secondary-bg">
-        <nav>
-      <h3>Zuba<span class="text-r">i</span>r</h3>
-            <ul>
-                <li><a class="text-black2" href="">Portfolio</a></li>
-                <li><a class="text-black2" href="">Blog</a></li>
-                <li><a  href=""><Button class="btn-primary" >Hire Me</Button></a></li>
-            </ul>
-        </nav>
-     <div class="banner">
-        <div class="banner-content">
-            <h4 class="bannner-greeting text-black2">Hi,I am</h4>
-            <h1 class="banner-title">Zubair Ibne Zahir</h1>
-            <p class="banner-description"> I’m a Junior Web Developer with a passion for building clean, responsive, and user-friendly websites. I enjoy working with HTML, CSS, JavaScript, and modern frameworks to create seamless web experiences. I'm always eager to learn new technologies and grow in the field of web development.</p>
-            
-            <button class="btn-primary">Download Cv</button>
-            <button class="btn-primary">Contact</button>
 
+<body class="bg-slate-950 text-white">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur">
+    <div class="mx-auto w-[min(1120px,92%)] py-3">
+      <nav class="flex items-center justify-between gap-4">
+        <a href="#top" class="text-2xl font-extrabold">
+          Zuba<span class="text-orange-500">i</span>r
+        </a>
+
+        <button id="menuBtn"
+                class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul id="menu"
+            class="hidden md:flex items-center gap-5">
+          <li><a class="opacity-90 hover:opacity-100" href="#about">About</a></li>
+          <li><a class="opacity-90 hover:opacity-100" href="#skills">Skills</a></li>
+          <li><a class="opacity-90 hover:opacity-100" href="#projects">Projects</a></li>
+          <li><a class="opacity-90 hover:opacity-100" href="#resume">Resume</a></li>
+          <li>
+            <a href="#contact"
+               class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-orange-500 to-violet-600 px-4 py-2 font-semibold">
+              Hire Me
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Mobile menu -->
+      <ul id="mobileMenu"
+          class="mt-3 hidden flex-col gap-2 rounded-2xl border border-white/10 bg-slate-950/95 p-3 md:hidden">
+        <li><a class="block rounded-xl px-3 py-2 hover:bg-white/5" href="#about">About</a></li>
+        <li><a class="block rounded-xl px-3 py-2 hover:bg-white/5" href="#skills">Skills</a></li>
+        <li><a class="block rounded-xl px-3 py-2 hover:bg-white/5" href="#projects">Projects</a></li>
+        <li><a class="block rounded-xl px-3 py-2 hover:bg-white/5" href="#resume">Resume</a></li>
+        <li><a class="block rounded-xl px-3 py-2 bg-gradient-to-r from-orange-500 to-violet-600 font-semibold" href="#contact">Hire Me</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="py-14">
+      <div class="mx-auto w-[min(1120px,92%)] grid gap-6 lg:grid-cols-[1.2fr_0.8fr] items-start">
+
+        <!-- Left -->
+        <div>
+          <p class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/80">
+            <i class="fa-solid fa-code text-orange-500"></i>
+            Junior MERN Stack & Frontend Developer (Student)
+          </p>
+
+          <h1 class="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">
+            Md Zubair Ibne Zahir
+          </h1>
+
+          <p class="mt-3 text-white/80 font-semibold">
+            React • JavaScript • Node.js • MongoDB • Learning Next.js
+          </p>
+
+          <p class="mt-4 text-white/70 leading-relaxed">
+            I’m a Computer Science student focused on building responsive, user-friendly web applications.
+            I learn by building real projects, improving UI/UX, and writing clean, maintainable code.
+          </p>
+
+          <p class="mt-3 text-white/70 leading-relaxed">
+            I’m currently looking for <span class="text-white font-semibold">internship</span> or
+            <span class="text-white font-semibold">junior developer</span> opportunities where I can contribute and grow.
+          </p>
+
+          <div class="mt-5 flex flex-wrap gap-3">
+            <a href="#projects"
+               class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-orange-500 to-violet-600 px-4 py-2 font-semibold">
+              <i class="fa-solid fa-diagram-project"></i> View Projects
+            </a>
+            <a href="#contact"
+               class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/0 px-4 py-2 font-semibold hover:bg-white/5">
+              <i class="fa-solid fa-paper-plane"></i> Contact
+            </a>
+          </div>
+
+          <div class="mt-5 flex flex-wrap gap-2">
+            <a class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/80 hover:border-orange-500/60"
+               href="mailto:zahirzubair740@gmail.com">
+              <i class="fa-solid fa-envelope text-orange-500"></i> Email
+            </a>
+
+            <a class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/80 hover:border-orange-500/60"
+               href="https://github.com/zubairz40-z" target="_blank" rel="noreferrer">
+              <i class="fa-brands fa-github text-orange-500"></i> GitHub
+            </a>
+
+            <a class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/80 hover:border-orange-500/60"
+               href="https://www.linkedin.com/in/zubair-ibne-zahir-9b7b24256" target="_blank" rel="noreferrer">
+              <i class="fa-brands fa-linkedin text-orange-500"></i> LinkedIn
+            </a>
+
+            <a class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/80 hover:border-orange-500/60"
+               href="https://www.facebook.com/zubair.zahir.714" target="_blank" rel="noreferrer">
+              <i class="fa-brands fa-facebook text-orange-500"></i> Facebook
+            </a>
+          </div>
         </div>
-        <img class="zubair" src="images/Adobe Express - file.png" alt="">
 
-     </div>
-
-    </header>
-
-    <main>
-        <section class="about secondary-bg">
-            <h3 class="section-title">About Me</h3>
-            <p class="section-description">I, m a designer & developer with a passion for web design. I enjoy developing simple, clean and slick websites that provide real value to the end user. Thousands of clients have procured exceptional resulfs while working with me. Delivering work within time and budget which meets clients requirements in our mata.</p>
-
-            <div class="about-items">
-                <div class="about-item">
-                    <p class="item-title">Name</p>
-                    <p class="item-descriptiom">Md Zubair Ibne Zahir</p>
-                </div>
-                <div class="about-item">
-                    <p class="item-title">Email</p>
-                    <p class="item-descriptiom">zahirzubair740@gmail.com</p>
-                </div>
-                <div class="about-item">
-                    <p class="item-title">Date of Birth</p>
-                    <p class="item-descriptiom">March 14,2003</p>
-                </div>
-                <div class="about-item">
-                    <p class="item-title">From</p>
-                    <p class="item-descriptiom">Dhaka,Bangladesh</p>
-                </div>
+        <!-- Right card -->
+        <aside class="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-[0_14px_44px_rgba(0,0,0,0.40)]">
+          <div class="flex items-center gap-4">
+            <div class="rounded-2xl p-[3px] bg-gradient-to-r from-orange-500 to-violet-600">
+              <img src="./images/img.jpeg" alt="Md Zubair Ibne Zahir"
+                   class="h-24 w-24 rounded-xl object-cover border border-white/10 bg-white/5" />
             </div>
 
-
-        </section>
-   <!--what i do section-->
-   <section class="skills">
-    <h3 class="section-title text-center">What I do</h3>
-    <p class="section-description text-center">I have more than 2 years experience building software for clients all over the world. Below is a quick overview of my main technical skill sets and technologies i use. Want to find out more about my experience? Check out my online resume and project portfolio</p> 
-
-    <div class="skills-container">
-        <div class="skill">
-            <img src="images/icons/js.png" alt="">
-            <h4 class="skill-title">Vanilla JavaScript</h4>
-            <p class="skill-descriptiom">I build dynamic and interactive websites using pure JavaScript, focusing on clean code and browser compatibility.</p>
-        </div>
-        <div class="skill">
-            <img src="images/icons/react.png" alt="">
-            <h4 class="skill-title">React</h4>
-            <p class="skill-descriptiom">I develop fast, responsive user interfaces with React, using reusable components and state management tools like hooks.</p>
-        </div>
-        <div class="skill">
-            <img src="images/icons/nodejs.png" alt="">
-            <h4 class="skill-title">Node.Js</h4>
-            <p class="skill-descriptiom">I create scalable backend services and APIs with Node.js, ensuring fast server-side operations using JavaScript.
-
-</p>
-        </div>
-        <div class="skill">
-            <img src="images/icons/mongo.png" alt="">
-            <h4 class="skill-title">MongoDB</h4>
-            <p class="skill-descriptiom">I design flexible, NoSQL databases with MongoDB to store and manage data efficiently in modern web applications.</p>
-        </div>
-    </div>
-   </section>
-
-   <section class="resume">
-     <h3 class="section-title">A summary of My Resume</h3>
- <div class="resume-container">
-    <!-- Education Column -->
-    <div class="resume-column">
-        <h3 class="resumecolumn-title">My Education</h3>
-
-        <div class="experience">
-            <h4 class="experience-title">Bachelors in Computer Engineering</h4>
-            <h5 class="experience-sub-title">North South University / 2023 - 2027</h5>
-            <p class="experience-description">
-                Studying core subjects like Data Structures, Algorithms, Web Development, and Software Engineering with hands-on projects.
-                Actively building real-world applications and continuously learning new technologies to grow as a full-stack developer.
-            </p>
-        </div>
-        <hr>
-
-        <div class="experience">
-            <h4 class="experience-title">Highschool in Science</h4>
-            <h5 class="experience-sub-title">MDIC / 2020 - 2022</h5>
-            <p class="experience-description">
-                Studied core science subjects including Physics, Chemistry, and Mathematics, building a strong foundation in analytical thinking and problem-solving.
-            </p>
-        </div>
-        <hr>
-
-        <div class="experience">
-            <h4 class="experience-title">Primary Studies</h4>
-            <h5 class="experience-sub-title">MDIC / 2006 - 2020</h5>
-            <p class="experience-description">
-                Completed foundational education with strong academic focus in core subjects including Science and Mathematics.
-            </p>
-        </div>
-        <hr>
-    </div>
-
-    <!-- Experience Column -->
-    <div class="resume-column">
-        <h3 class="resumecolumn-title">My Experience</h3>
-
-        <div class="experience">
-            <h4 class="experience-title">Junior Developer</h4>
-            <h5 class="experience-sub-title">Nielsen Company / 2022 - Present</h5>
-            <p class="experience-description">
-                Worked on frontend features and debugging web applications using HTML, CSS, and JavaScript. Collaborated with cross-functional teams to deliver data-driven dashboards.
-            </p>
-        </div>
-        <hr>
-
-        <div class="experience">
-            <h4 class="experience-title">Intern Web Developer</h4>
-            <h5 class="experience-sub-title">Pathao / 2021 - 2022</h5>
-            <p class="experience-description">
-                Assisted in developing responsive web pages, maintaining internal tools, and learning real-world deployment processes under the guidance of senior developers.
-            </p>
-        </div>
-        <hr>
-
-        <div class="experience">
-            <h4 class="experience-title">React Developer</h4>
-            <h5 class="experience-sub-title">Webzlens / 2020 - 2021</h5>
-            <p class="experience-description desrip">
-                Built user interfaces using React.js, integrated RESTful APIs,optimized components for better performance and code maintainability.
-            </p>
-        </div>
-        <hr>
-    </div>
-
-</div> 
-      <div class="text-center resume-download-cv">
-          <button class="btn-primary">Download CV</button>
+            <div>
+              <h3 class="text-lg font-extrabold">Md Zubair Ibne Zahir</h3>
+              <p class="text-white/70 font-semibold text-sm">Junior Web Developer</p>
+              <p class="mt-1 text-white/70 text-sm flex items-center gap-2">
+                <i class="fa-solid fa-location-dot text-orange-500"></i> Dhaka, Bangladesh
+              </p>
+            </div>
           </div>
-</div>
+
+          <div class="my-4 h-px bg-white/10"></div>
+
+          <div class="grid grid-cols-2 gap-3 text-sm">
+            <div>
+              <p class="text-white/60">Email</p>
+              <p class="font-semibold">zahirzubair740@gmail.com</p>
+            </div>
+            <div>
+              <p class="text-white/60">Focus</p>
+              <p class="font-semibold">MERN + Frontend</p>
+            </div>
+            <div>
+              <p class="text-white/60">Learning</p>
+              <p class="font-semibold">Next.js</p>
+            </div>
+            <div>
+              <p class="text-white/60">Open to</p>
+              <p class="font-semibold">Internship / Junior</p>
+            </div>
+          </div>
+
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 font-semibold hover:border-orange-500/60"
+               href="mailto:zahirzubair740@gmail.com">
+              <i class="fa-solid fa-envelope text-orange-500"></i> Email Me
+            </a>
+
+            <a class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 font-semibold hover:border-orange-500/60"
+               href="https://github.com/zubairz40-z" target="_blank" rel="noreferrer">
+              <i class="fa-brands fa-github text-orange-500"></i> GitHub
+            </a>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-16 border-y border-white/10 bg-white/[0.03]">
+      <div class="mx-auto w-[min(1120px,92%)]">
+        <div class="mb-7">
+          <h2 class="text-3xl font-extrabold">About Me</h2>
+          <p class="text-white/70 mt-2">Building responsive web apps, one line of code at a time.</p>
         </div>
-     </div>
 
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <h3 class="text-lg font-bold">Who I am</h3>
+            <p class="text-white/70 mt-2">
+              A CSE student focused on frontend and MERN stack development. I love clean UI, good UX,
+              and building projects that solve real problems.
+            </p>
+          </div>
 
-   </section>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <h3 class="text-lg font-bold">Currently Learning</h3>
+            <ul class="mt-2 list-disc pl-5 text-white/70 space-y-1">
+              <li>Next.js for modern frontend development</li>
+              <li>Advanced React patterns</li>
+              <li>UI/UX improvements</li>
+            </ul>
+          </div>
 
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <h3 class="text-lg font-bold">What I’m working on</h3>
+            <ul class="mt-2 list-disc pl-5 text-white/70 space-y-1">
+              <li>Improving MERN project quality & performance</li>
+              <li>Building more real-world projects</li>
+              <li>Strengthening backend API skills</li>
+            </ul>
+          </div>
 
-    </main>
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <h3 class="text-lg font-bold">Ask me about</h3>
+            <ul class="mt-2 list-disc pl-5 text-white/70 space-y-1">
+              <li>React, HTML, CSS, JavaScript</li>
+              <li>MERN Stack basics</li>
+              <li>Responsive and interactive UI</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-     </main>
-<footer class="footer second-bg">
-  <div class="footer-container">
+    <!-- Skills -->
+    <section id="skills" class="py-16">
+      <div class="mx-auto w-[min(1120px,92%)]">
+        <div class="mb-7">
+          <h2 class="text-3xl font-extrabold">Technical Skills</h2>
+          <p class="text-white/70 mt-2">Technologies I use and actively improve</p>
+        </div>
 
-    <!-- Column 1: Contact Info -->
-    <div class="footer-column">
-      <h3 class="section-title">Let's Connect</h3>
-      <p>
-        Please fill out the form on this section to contact with me or call between 
-        9:00 A.M and 8:00 P.M ET, Monday through Friday.
-      </p>
-      <div class="social-links">
-        <a href="#"><img src="images/icons/facebook.png" alt="Facebook"></a>
-        <a href="#"><img src="images/icons/insta.png" alt="Instagram"></a>
-        <a href="#"><img src="images/icons/twitter.png" alt="Twitter"></a>
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <h3 class="text-lg font-bold"><i class="fa-solid fa-laptop-code text-orange-500"></i> Frontend</h3>
+            <ul class="mt-3 space-y-2 text-white/70">
+              <li class="flex items-center gap-2"><i class="fa-brands fa-html5 text-orange-500"></i> HTML5</li>
+              <li class="flex items-center gap-2"><i class="fa-brands fa-css3-alt text-orange-500"></i> CSS3</li>
+              <li class="flex items-center gap-2"><i class="fa-brands fa-js text-orange-500"></i> JavaScript</li>
+              <li class="flex items-center gap-2"><i class="fa-brands fa-react text-orange-500"></i> React</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-wind text-orange-500"></i> Tailwind</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-arrow-right text-orange-500"></i> Next.js (Learning)</li>
+            </ul>
+          </div>
+
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <h3 class="text-lg font-bold"><i class="fa-solid fa-server text-orange-500"></i> Backend</h3>
+            <ul class="mt-3 space-y-2 text-white/70">
+              <li class="flex items-center gap-2"><i class="fa-brands fa-node-js text-orange-500"></i> Node.js</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-network-wired text-orange-500"></i> Express</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-database text-orange-500"></i> MongoDB</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-orange-500"></i> Firebase Auth</li>
+            </ul>
+          </div>
+
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <h3 class="text-lg font-bold"><i class="fa-solid fa-screwdriver-wrench text-orange-500"></i> Tools</h3>
+            <ul class="mt-3 space-y-2 text-white/70">
+              <li class="flex items-center gap-2"><i class="fa-brands fa-git-alt text-orange-500"></i> Git/GitHub</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-code text-orange-500"></i> VS Code</li>
+              <li class="flex items-center gap-2"><i class="fa-brands fa-figma text-orange-500"></i> Figma (Basics)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-16 border-y border-white/10 bg-white/[0.03]">
+      <div class="mx-auto w-[min(1120px,92%)]">
+        <div class="mb-7">
+          <h2 class="text-3xl font-extrabold">Recent Projects</h2>
+          <p class="text-white/70 mt-2">Live projects built with MERN stack and modern frontend tools</p>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <!-- TravelEase -->
+          <article class="rounded-2xl border border-white/10 bg-white/5 p-5 flex flex-col gap-3">
+            <div>
+              <h3 class="text-lg font-bold">TravelEase</h3>
+              <p class="text-white/70 text-sm">MERN Stack • Rent a Car App</p>
+            </div>
+            <p class="text-white/70">A full-stack rent-a-car application with responsive UI and authentication.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">React</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">Node</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">Express</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">MongoDB</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">Firebase</span>
+            </div>
+            <div class="mt-auto pt-2">
+              <a class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-orange-500 to-violet-600 px-4 py-2 font-semibold"
+                 href="https://travelease-fec80.web.app" target="_blank" rel="noreferrer">
+                Live Site <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Blood Drop -->
+          <article class="rounded-2xl border border-white/10 bg-white/5 p-5 flex flex-col gap-3">
+            <div>
+              <h3 class="text-lg font-bold">Blood Drop</h3>
+              <p class="text-white/70 text-sm">MERN Stack • Blood Donation App</p>
+            </div>
+            <p class="text-white/70">A donation platform connecting donors and recipients with clean UI and auth.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">React</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">Node</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">Express</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">MongoDB</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">Firebase</span>
+            </div>
+            <div class="mt-auto pt-2">
+              <a class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-orange-500 to-violet-600 px-4 py-2 font-semibold"
+                 href="https://blood-drop-b7711.web.app" target="_blank" rel="noreferrer">
+                Live Site <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Z Game Hub -->
+          <article class="rounded-2xl border border-white/10 bg-white/5 p-5 flex flex-col gap-3">
+            <div>
+              <h3 class="text-lg font-bold">Z Game Hub</h3>
+              <p class="text-white/70 text-sm">Frontend • React + Tailwind + JSON</p>
+            </div>
+            <p class="text-white/70">A responsive game discovery UI built with React, Tailwind, and JSON data.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">React</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">Tailwind</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">JSON</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">Firebase</span>
+            </div>
+            <div class="mt-auto pt-2">
+              <a class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-orange-500 to-violet-600 px-4 py-2 font-semibold"
+                 href="https://z-game-hub.web.app" target="_blank" rel="noreferrer">
+                Live Site <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resume -->
+    <section id="resume" class="py-16">
+      <div class="mx-auto w-[min(1120px,92%)]">
+        <div class="mb-7">
+          <h2 class="text-3xl font-extrabold">Education & Learning</h2>
+          <p class="text-white/70 mt-2">My academic background and development journey</p>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <h3 class="text-lg font-bold">Education</h3>
+            <div class="mt-4 space-y-3">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="font-extrabold">BSc in CSE</p>
+                <p class="text-white/70 text-sm">North South University • 2023 – Present</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="font-extrabold">A-Levels (Science)</p>
+                <p class="text-white/70 text-sm">Manarat Dhaka International School & College • 2020 – 2022</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <h3 class="text-lg font-bold">Learning & Practice</h3>
+            <div class="mt-4 space-y-3">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="font-extrabold">MERN Stack Practice</p>
+                <p class="text-white/70 text-sm mt-1">
+                  Built full-stack projects with React, Node.js, Express, MongoDB, and Firebase auth.
+                </p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="font-extrabold">Currently Improving</p>
+                <p class="text-white/70 text-sm mt-1">Next.js, UI/UX, React patterns, and backend APIs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-16 border-t border-white/10 bg-white/[0.03]">
+      <div class="mx-auto w-[min(1120px,92%)]">
+        <div class="mb-7">
+          <h2 class="text-3xl font-extrabold">Contact</h2>
+          <p class="text-white/70 mt-2">Let’s connect — I’m open to internships and junior roles.</p>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <h3 class="text-lg font-bold">Reach me</h3>
+            <p class="text-white/70 mt-2">Fastest way: email. Also available on GitHub / LinkedIn.</p>
+
+            <div class="mt-4 grid gap-3">
+              <a class="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 hover:border-orange-500/60"
+                 href="mailto:zahirzubair740@gmail.com">
+                <span class="text-white/70 flex items-center gap-2"><i class="fa-solid fa-envelope text-orange-500"></i> Email</span>
+                <strong>zahirzubair740@gmail.com</strong>
+              </a>
+
+              <a class="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 hover:border-orange-500/60"
+                 href="https://github.com/zubairz40-z" target="_blank" rel="noreferrer">
+                <span class="text-white/70 flex items-center gap-2"><i class="fa-brands fa-github text-orange-500"></i> GitHub</span>
+                <strong>github.com/zubairz40-z</strong>
+              </a>
+
+              <a class="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 hover:border-orange-500/60"
+                 href="https://www.linkedin.com/in/zubair-ibne-zahir-9b7b24256" target="_blank" rel="noreferrer">
+                <span class="text-white/70 flex items-center gap-2"><i class="fa-brands fa-linkedin text-orange-500"></i> LinkedIn</span>
+                <strong>linkedin.com/in/zubair-ibne-zahir</strong>
+              </a>
+
+              <a class="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 hover:border-orange-500/60"
+                 href="https://www.facebook.com/zubair.zahir.714" target="_blank" rel="noreferrer">
+                <span class="text-white/70 flex items-center gap-2"><i class="fa-brands fa-facebook text-orange-500"></i> Facebook</span>
+                <strong>facebook.com/zubair.zahir.714</strong>
+              </a>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+            <h3 class="text-lg font-bold">Send a message</h3>
+
+            <form class="mt-4 grid gap-3" action="#" method="post">
+              <div class="grid gap-1">
+                <label class="text-sm text-white/70" for="name">Your Name</label>
+                <input class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none focus:border-orange-500/60"
+                       id="name" name="name" type="text" placeholder="Your Name" required />
+              </div>
+
+              <div class="grid gap-1">
+                <label class="text-sm text-white/70" for="email">Your Email</label>
+                <input class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none focus:border-orange-500/60"
+                       id="email" name="email" type="email" placeholder="Your Email" required />
+              </div>
+
+              <div class="grid gap-1">
+                <label class="text-sm text-white/70" for="message">Message</label>
+                <textarea class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 outline-none focus:border-orange-500/60"
+                          id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
+              </div>
+
+              <button class="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-orange-500 to-violet-600 px-4 py-3 font-semibold"
+                      type="submit">
+                Send Message <i class="fa-solid fa-paper-plane"></i>
+              </button>
+
+              <p class="text-xs text-white/60">
+                Tip: connect this form to Formspree / Netlify Forms later to receive messages.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 py-6 bg-slate-950/70">
+    <div class="mx-auto w-[min(1120px,92%)] flex flex-wrap items-center justify-between gap-3">
+      <p class="text-white/70">© <span id="year"></span> Md Zubair Ibne Zahir. All rights reserved.</p>
+
+      <div class="flex gap-4 text-xl text-white/70">
+        <a class="hover:text-orange-500" href="https://github.com/zubairz40-z" target="_blank" rel="noreferrer" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a class="hover:text-orange-500" href="https://www.linkedin.com/in/zubair-ibne-zahir-9b7b24256" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a class="hover:text-orange-500" href="https://www.facebook.com/zubair.zahir.714" target="_blank" rel="noreferrer" aria-label="Facebook">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
       </div>
     </div>
+  </footer>
 
-    <!-- Column 2: Message Form -->
-    <div class="footer-column">
-      <h3 class="section-title">Let's Message Me</h3>
-      <form action="#">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea rows="5" placeholder="Message" required></textarea>
-        <input class="button-primary" type="submit" value="Send Message">
-      </form>
-    </div>
+  <script>
+    // year
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-  </div>
-</footer>
+    // mobile menu
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn?.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    // close mobile menu on click
+    mobileMenu?.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+    });
+  </script>
 </body>
 </html>
