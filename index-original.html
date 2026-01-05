@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Md Zubair Ibne Zahir | Frontend & MERNSTACK Developer</title>
+    
+    <!-- Fonts: Poppins (Display) & JetBrains Mono (Code/Tech) -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+    
+    <!-- Icons (FontAwesome) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: "#FDC435", // Yellowish Golden
+                            glow: "rgba(253, 196, 53, 0.5)",
+                            dark: "#e6b005"
+                        },
+                        dark: {
+                            bg: "#050505",
+                            card: "#0F1115",
+                            border: "#1F2937",
+                            text: "#9CA3AF"
+                        }
+                    },
+                    fontFamily: {
+                        sans: ["Poppins", "sans-serif"],
+                        mono: ["JetBrains Mono", "monospace"],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)",
+                    }
+                },
+            },
+        };
+    </script>
+
+    <style>
+        /* Custom Utilities */
+        body {
+            background-color: #050505;
+            color: #e5e7eb;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FDC435; } /* Brand Color */
+        
+        .neon-text { text-shadow: 0 0 10px rgba(253, 196, 53, 0.3); } /* Brand Glow */
+        .glass-panel {
+            background: rgba(15, 17, 21, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .bg-grid {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Toast Notification */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #FDC435; /* Brand Color */
+            color: #000;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s, bottom 0.3s;
+            box-shadow: 0 0 20px rgba(253, 196, 53, 0.4); /* Brand Glow */
+        }
+        #toast.show { visibility: visible; opacity: 1; bottom: 50px; }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-brand selection:text-black">
+
+    <!-- Background Grid -->
+    <div class="fixed inset-0 pointer-events-none z-[-1] bg-grid opacity-[0.07] h-screen w-full"></div>
+    <div class="fixed top-0 left-0 w-full h-32 bg-gradient-to-b from-dark-bg to-transparent z-[-1]"></div>
+
+    <!-- 1. Navigation Bar -->
+    <header class="fixed top-0 w-full z-50 transition-all duration-300 py-4" id="navbar">
+        <div class="glass-panel mx-4 lg:mx-12 rounded-xl px-6 py-3 flex justify-between items-center shadow-lg border border-gray-800">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 border border-brand flex items-center justify-center text-xl font-bold text-brand group-hover:bg-brand group-hover:text-black transition-all duration-300">
+                    Z.
+                </div>
+                <span class="hidden sm:block font-mono text-sm text-gray-400 group-hover:text-brand transition-colors">
+                    &lt;Dev.Zubair /&gt;
+                </span>
+            </a>
+
+            <nav class="hidden lg:flex items-center space-x-8 font-mono text-sm">
+                <a class="text-brand hover:opacity-80 transition-opacity" href="#">Home</a>
+                <a class="text-gray-400 hover:text-white transition-colors" href="#about">About</a>
+                <a class="text-gray-400 hover:text-white transition-colors" href="#skills">Skills</a>
+                <a class="text-gray-400 hover:text-white transition-colors" href="#education">Education</a>
+                <a class="text-gray-400 hover:text-white transition-colors" href="#projects">Projects</a>
+                <a class="px-5 py-2 border border-brand text-brand hover:bg-brand hover:text-black font-semibold rounded transition-all duration-300" href="#contact">
+                    Contact
+                </a>
+            </nav>
+
+            <button id="mobile-menu-btn" class="lg:hidden text-2xl text-gray-300 hover:text-brand focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden absolute top-20 left-4 right-4 glass-panel rounded-xl p-6 flex-col space-y-4 lg:hidden shadow-2xl border border-gray-800">
+            <a class="block text-brand font-mono" href="#">Home</a>
+            <a class="block text-gray-400 hover:text-white" href="#about">About</a>
+            <a class="block text-gray-400 hover:text-white" href="#skills">Skills</a>
+            <a class="block text-gray-400 hover:text-white" href="#education">Education</a>
+            <a class="block text-gray-400 hover:text-white" href="#projects">Projects</a>
+            <a class="block text-center bg-brand text-black font-bold py-2 rounded" href="#contact">Contact</a>
+        </div>
+    </header>
+
+    <!-- 2. Hero Section (Updated Title & Icons) -->
+    <section class="min-h-screen flex items-center pt-24 relative">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div class="space-y-6 z-10 reveal active">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-800 bg-gray-900/50 backdrop-blur-sm">
+                        <span class="w-2 h-2 rounded-full bg-brand"></span> <!-- Brand Color -->
+                        <span class="text-xs font-mono text-gray-300 uppercase tracking-widest">Open to Opportunities</span>
+                    </div>
+                    
+                    <h1 class="text-5xl lg:text-7xl font-bold tracking-tighter text-white leading-tight">
+                         ZUBAIR 
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-yellow-200 neon-text">IBNE ZAHIR</span>
+                    </h1>
+                    
+                    <h2 class="text-2xl lg:text-3xl text-gray-400 font-mono border-l-2 border-brand pl-4">
+                        Frontend & MernStack Developer
+                    </h2>
+                    
+                    <p class="text-gray-400 max-w-lg text-lg leading-relaxed">
+                        I am a student and developer passionate about building user-friendly web applications. I focus on learning MERN stack and solving real-world problems through code.
+                    </p>
+                    
+                    <!-- Buttons -->
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <!-- 3. Resume Button -->
+                        <a href="https://drive.google.com/file/d/1G7QhyaS512dhrHrlUZPnbJ641QYPc_pc/view?usp=sharing" target="_blank" class="group relative px-6 py-3 bg-brand text-black font-bold rounded overflow-hidden transition-all hover:scale-105 flex items-center gap-2">
+                            <i class="fas fa-download"></i>
+                            <span>Download CV</span>
+                        </a>
+                        <a href="#projects" class="px-6 py-3 border border-gray-600 text-white font-mono rounded hover:border-white hover:bg-white/5 transition-all">
+                            View Projects
+                        </a>
+                    </div>
+
+                    <!-- 4. Social Links -->
+                    <div class="flex gap-6 pt-6 text-gray-400 text-2xl">
+                        <a href="https://github.com/zubairz40-z" target="_blank" class="hover:text-brand transition-colors"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/zubair-ibne-zahir" target="_blank" class="hover:text-brand transition-colors"><i class="fab fa-linkedin"></i></a>
+                        <a href="mailto:zahirzubair740@gmail.com" class="hover:text-brand transition-colors"><i class="fas fa-envelope"></i></a>
+                           <a href="https://www.facebook.com/zubair.zahir.714" target="_blank" class="hover:text-brand transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+
+                <div class="relative lg:h-[600px] flex items-center justify-center reveal delay-200">
+                    <div class="absolute w-[500px] h-[500px] border border-gray-800 rounded-full animate-[spin_10s_linear_infinite] opacity-30"></div>
+                    <div class="relative w-72 h-96 lg:w-80 lg:h-[450px] rounded-2xl overflow-hidden border-2 border-brand/20 z-10 group shadow-[0_0_30px_rgba(253,196,53,0.1)]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-90"></div>
+                        <!-- Using user's local path -->
+                        <img src="./images/icons/phto1.jpg" alt="Md Zubair Ibne Zahir" class="w-full h-full object-cover transform transition-transform duration-700 "/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. About Me Section (Added Image & Humble Text) -->
+    <section id="about" class="py-24 relative bg-dark-bg border-y border-dark-border">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12 reveal">
+                    <span class="text-brand font-mono text-sm uppercase tracking-widest">Who I Am</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mt-2">About Me</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <!-- Image Side -->
+                <div class="reveal order-2 md:order-1 perspective">
+  <div class="relative group card-3d">
+    
+    <!-- Glow -->
+    <div class="absolute -inset-6 bg-gradient-to-r from-brand to-yellow-500 opacity-30 blur-2xl rounded-full group-hover:opacity-60 transition-all duration-700"></div>
+
+    <!-- Image -->
+    <img
+      src="./images/icons/phto2.png"
+      alt="Portfolio Image"
+      class="relative w-full h-[420px] object-contain drop-shadow-2xl floating"
+    />
+    
+  </div>
+</div>
+                    <!-- Text Side -->
+                    <div class="space-y-6 reveal order-1 md:order-2">
+                        <div class="glass-panel p-8 rounded-2xl border border-gray-800 h-full">
+                            <p class="text-gray-300 leading-relaxed text-lg">
+                                Hi, I'm <strong class="text-brand">Zubair</strong>. I am currently a 3rd-year CSE student at North South University.
+                            </p>
+                            
+                            <p class="text-gray-400 leading-relaxed">
+                                My journey into programming started out of simple curiosity about how websites work. Since then, I have been learning and practicing MERN stack to build applications that solve real problems.
+                            </p>
+                            
+                            <p class="text-gray-400 leading-relaxed">
+                                <strong class="text-white">My Approach:</strong> I believe in continuous learning. I am still early in my career, but I bring a strong work ethic and a genuine desire to learn and grow with every project.
+                            </p>
+
+                            <p class="text-gray-400 leading-relaxed">
+                                <strong class="text-white">Beyond Code:</strong> When I'm not coding, I enjoy playing <span class="text-brand">football</span>, traveling, and spending time with family. I believe a balanced life fuels better creativity.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Skills Section (Icons & Humble Header) -->
+    <section id="skills" class="py-24 bg-dark-bg relative">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand font-mono text-sm uppercase tracking-widest">What I Use</span>
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mt-2">Technical Skills</h2>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Helper class for skill items -->
+                <script>
+                    const skills = [
+                        { name: "HTML5", icon: "fab fa-html5", color: "text-orange-500" },
+                        { name: "CSS3", icon: "fab fa-css3-alt", color: "text-blue-500" },
+                        { name: "JavaScript", icon: "fab fa-js", color: "text-yellow-400" },
+                        { name: "React", icon: "fab fa-react", color: "text-cyan-400" },
+                        { name: "Tailwind", icon: "fas fa-wind", color: "text-cyan-300" },
+                        { name: "Next.js", icon: "fas fa-layer-group", color: "text-white" },
+                        { name: "Node.js", icon: "fab fa-node-js", color: "text-green-500" },
+                        { name: "Express", icon: "fas fa-server", color: "text-gray-400" },
+                        { name: "MongoDB", icon: "fas fa-database", color: "text-green-600" },
+                        { name: "Git", icon: "fab fa-git-alt", color: "text-red-500" },
+                        { name: "VS Code", icon: "fas fa-code", color: "text-blue-600" },
+                        { name: "Figma", icon: "fab fa-figma", color: "text-purple-400" }
+                    ];
+                    
+                    document.write(skills.map(skill => `
+                        <div class="glass-panel p-6 rounded-xl flex flex-col items-center justify-center gap-3 hover:-translate-y-2 transition-transform duration-300 group reveal">
+                            <i class="${skill.icon} text-4xl ${skill.color} group-hover:scale-110 transition-transform"></i>
+                            <span class="text-sm font-mono text-gray-300 group-hover:text-white">${skill.name}</span>
+                        </div>
+                    `).join(''));
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Education & 8. Experience (Timeline - Structure Fixed) -->
+    <section id="education" class="py-24 bg-dark-bg border-t border-dark-border relative">
+        <div class="container mx-auto px-6 lg:px-12 relative z-10">
+            <div class="text-center mb-20 reveal">
+                <span class="text-brand font-mono text-sm uppercase tracking-widest">My Journey</span>
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mt-2">Education & Practice</h2>
+            </div>
+
+            <div class="max-w-4xl mx-auto relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gray-800"></div>
+
+                <!-- Education 1 -->
+                <div class="relative mb-12 md:mb-16 reveal">
+                    <div class="flex flex-col md:flex-row items-center justify-between w-full">
+                        <div class="order-1 md:w-5/12 text-left p-6">
+                            <h3 class="text-xl font-bold text-white">BSc in CSE</h3>
+                             <i class="fas fa-graduation-cap mx-auto text-brand text-sm"></i>
+                            <p class="text-brand font-mono text-sm mb-2">North South University • 2023 – Present</p>
+                            <p class="text-gray-400 text-sm">Currently studying Computer Science, learning fundamentals of software engineering and web technologies.</p>
+                        </div>
+                        <div class="z-20 flex items-center order-1 bg-brand shadow-xl w-8 h-8 rounded-full border-4 border-dark-bg">
+                            <h1 class="mx-auto font-semibold text-lg text-black">1</h1>
+                        </div>
+                        <div class="order-1 md:w-5/12"></div>
+                    </div>
+                </div>
+
+                <!-- Education 2 -->
+                <div class="relative mb-12 md:mb-16 reveal delay-100">
+                    <div class="flex flex-col md:flex-row items-center justify-between w-full">
+                        <div class="order-1 md:w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-gray-700 shadow-xl w-8 h-8 rounded-full border-4 border-dark-bg">
+                            <h1 class="mx-auto font-semibold text-lg text-white">2</h1>
+                        </div>
+                        <div class="order-1 md:w-5/12 text-left p-6">
+                            <h3 class="text-xl font-bold text-white">A-Levels (CAIE)</h3>
+                            <p class="text-gray-500 font-mono text-sm mb-2">Manarat Dhaka Int. School & College • 2020 – 2022</p>
+                            <p class="text-gray-400 text-sm">Completed my higher secondary education, focusing on Science and Mathematics.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 1: MERN Stack -->
+                <div class="relative mb-12 md:mb-16 reveal delay-200">
+                    <div class="flex flex-col md:flex-row items-center justify-between w-full">
+                        <div class="order-1 md:w-5/12 text-left p-6">
+                            <h3 class="text-xl font-bold text-white">MERN Stack Practice</h3>
+                            <p class="text-brand font-mono text-sm mb-2">Self-Learning / Projects • 2023 – Present</p>
+                            <p class="text-gray-400 text-sm">Building small to medium projects to improve my understanding of React, Node.js, and databases.</p>
+                        </div>
+                        <div class="z-20 flex items-center order-1 bg-dark-bg border-2 border-brand shadow-[0_0_10px_#FDC435] w-8 h-8 rounded-full">
+                            <i class="fas fa-code mx-auto text-brand text-sm"></i>
+                        </div>
+                        <div class="order-1 md:w-5/12"></div>
+                    </div>
+                </div>
+
+                 <!-- Experience 2: Course -->
+                 <div class="relative reveal delay-200">
+                    <div class="flex flex-col md:flex-row items-center justify-between w-full">
+                        <div class="order-1 md:w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-dark-bg border-2 border-brand shadow-[0_0_10px_#FDC435] w-8 h-8 rounded-full">
+                            <i class="fas fa-graduation-cap mx-auto text-brand text-sm"></i>
+                        </div>
+                        <div class="order-1 md:w-5/12 text-left p-6">
+                            <h3 class="text-xl font-bold text-white">Complete Web Development Course</h3>
+                            <p class="text-brand font-mono text-sm mb-2">Programming Hero • 2025 – Present</p>
+                            <p class="text-gray-400 text-sm">Building Full MernStack Web APP with understanding of React, Node.js, and databases.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Projects Section (UPDATED WITH ICONS) -->
+    <section id="projects" class="py-24">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                <div>
+                    <span class="text-brand font-mono text-sm uppercase tracking-widest">Portfolio</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mt-2">My Projects</h2>
+                </div>
+                <a href="https://github.com/zubairz40-z" target="_blank" class="text-gray-400 hover:text-white font-mono text-sm mt-4 md:mt-0 flex items-center gap-2">
+                    View GitHub <i class="fas fa-external-link-alt text-xs"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1: TravelEase -->
+                <div class="group relative rounded-xl overflow-hidden bg-dark-card border border-dark-border reveal">
+                    <div class="h-48 overflow-hidden relative">
+                        <!-- Hover Overlay -->
+                        <a href="https://travelease-fec80.web.app" target="_blank" class="absolute inset-0 bg-black/60 hover:bg-transparent transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 z-20">
+                            <div class="bg-brand text-black font-bold px-4 py-2 rounded flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <span>Visit Live Site</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </a>
+                        <!-- Actual Image (GitHub Raw Link) -->
+                        <img src="https://github.com/zubairz40-z/zubairz40-z/raw/main/Screenshot%202025-12-31%20185012.png" alt="TravelEase" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand transition-colors">MERN Stack • Rent a Car App</h3>
+                        <p class="text-sm text-gray-400 mb-4 line-clamp-2">A full-stack rent-a-car application with responsive UI and authentication.</p>
+                        
+                        <!-- ICONS SECTION (UPDATED) -->
+                        <div class="flex flex-wrap gap-3 mb-4">
+                            <i class="fab fa-react text-cyan-400 text-xl group-hover:scale-110 transition-transform" title="React"></i>
+                            <i class="fab fa-node-js text-green-500 text-xl group-hover:scale-110 transition-transform" title="Node.js"></i>
+                            <i class="fas fa-server text-gray-400 text-xl group-hover:scale-110 transition-transform" title="Express"></i>
+                            <i class="fas fa-database text-green-600 text-xl group-hover:scale-110 transition-transform" title="MongoDB"></i>
+                            <i class="fas fa-fire text-brand text-xl group-hover:scale-110 transition-transform" title="Firebase"></i>
+                        </div>
+
+                        <button onclick="openProject(0)" class="w-full py-2 bg-gray-800 hover:bg-brand hover:text-black text-white font-mono text-sm rounded transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Blood Drop -->
+                <div class="group relative rounded-xl overflow-hidden bg-dark-card border border-dark-border reveal delay-100">
+                    <div class="h-48 overflow-hidden relative">
+                        <!-- Hover Overlay -->
+                        <a href="https://blood-drop-b7711.web.app" target="_blank" class="absolute inset-0 bg-black/60 hover:bg-transparent transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 z-20">
+                            <div class="bg-brand text-black font-bold px-4 py-2 rounded flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <span>Visit Live Site</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </a>
+                        <!-- Actual Image -->
+                        <img src="https://github.com/zubairz40-z/zubairz40-z/raw/main/Screenshot%202025-12-31%20185425.png" alt="Blood Drop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand transition-colors">MERN Stack • Blood Donation App</h3>
+                        <p class="text-sm text-gray-400 mb-4 line-clamp-2">A donation platform connecting donors and recipients with clean UI and auth.</p>
+                        
+                        <!-- ICONS SECTION -->
+                        <div class="flex flex-wrap gap-3 mb-4">
+                            <i class="fab fa-react text-cyan-400 text-xl group-hover:scale-110 transition-transform" title="React"></i>
+                            <i class="fab fa-node-js text-green-500 text-xl group-hover:scale-110 transition-transform" title="Node.js"></i>
+                            <i class="fas fa-server text-gray-400 text-xl group-hover:scale-110 transition-transform" title="Express"></i>
+                            <i class="fas fa-database text-green-600 text-xl group-hover:scale-110 transition-transform" title="MongoDB"></i>
+                            <i class="fas fa-fire text-brand text-xl group-hover:scale-110 transition-transform" title="Firebase"></i>
+                        </div>
+
+                        <button onclick="openProject(1)" class="w-full py-2 bg-gray-800 hover:bg-brand hover:text-black text-white font-mono text-sm rounded transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project Card 3: Z Game Hub -->
+                <div class="group relative rounded-xl overflow-hidden bg-dark-card border border-dark-border reveal delay-200">
+                    <div class="h-48 overflow-hidden relative">
+                        <!-- Hover Overlay -->
+                        <a href="https://z-game-hub.netlify.app" target="_blank" class="absolute inset-0 bg-black/60 hover:bg-transparent transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 z-20">
+                            <div class="bg-brand text-black font-bold px-4 py-2 rounded flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <span>Visit Live Site</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </a>
+                        <!-- Actual Image -->
+                        <img src="https://github.com/zubairz40-z/zubairz40-z/raw/main/Screenshot%202025-12-31%20185125ss.png" alt="Z Game Hub" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand transition-colors">Frontend • React + Tailwind + JSON</h3>
+                        <p class="text-sm text-gray-400 mb-4 line-clamp-2">A responsive game discovery UI built with React, Tailwind, and JSON data.</p>
+                        
+                        <!-- ICONS SECTION -->
+                        <div class="flex flex-wrap gap-3 mb-4">
+                            <i class="fab fa-react text-cyan-400 text-xl group-hover:scale-110 transition-transform" title="React"></i>
+                            <i class="fas fa-wind text-cyan-300 text-xl group-hover:scale-110 transition-transform" title="Tailwind"></i>
+                            <i class="fas fa-code text-blue-600 text-xl group-hover:scale-110 transition-transform" title="JSON"></i>
+                            <i class="fas fa-fire text-brand text-xl group-hover:scale-110 transition-transform" title="Firebase"></i>
+                        </div>
+
+                        <button onclick="openProject(2)" class="w-full py-2 bg-gray-800 hover:bg-brand hover:text-black text-white font-mono text-sm rounded transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Details Modal (Hidden by default) -->
+    <div id="projectModal" class="fixed inset-0 z-[60] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 modal-overlay transition-opacity" aria-hidden="true" onclick="closeProject()"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <div class="inline-block align-bottom glass-panel rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full border border-gray-700">
+                <!-- Modal Content -->
+                <div id="modalContent" class="p-6 lg:p-8">
+                    <!-- Content injected via JS -->
+                </div>
+                <div class="bg-gray-900/50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse border-t border-gray-800">
+                    <button type="button" onclick="closeProject()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-brand text-base font-medium text-black hover:bg-white focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 10. Contact Information -->
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-brand/5 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div class="container mx-auto px-6 lg:px-12 relative z-10">
+            <div class="glass-panel rounded-3xl p-8 lg:p-16 max-w-5xl mx-auto border border-gray-800 reveal">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">Get in Touch</h2>
+                    <p class="text-gray-400">I am always open to discussing new projects or opportunities.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Contact Info -->
+                    <div class="space-y-8 flex flex-col justify-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0 text-brand">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold mb-1">Email</h4>
+                                <p class="text-gray-400 text-sm font-mono">zahirzubair740@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0 text-brand">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold mb-1">Phone</h4>
+                                <p class="text-gray-400 text-sm font-mono">01954273593</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0 text-brand">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold mb-1">WhatsApp</h4>
+                                <a href="https://wa.me/8801954273593" target="_blank" class="text-gray-400 text-sm font-mono hover:text-white transition-colors">Chat on WhatsApp</a>
+                            </div>
+
+                              <div>
+                                <div class="flex gap-6 pt-6 text-gray-400 text-2xl">
+                        <a href="https://github.com/zubairz40-z" target="_blank" class="hover:text-brand transition-colors"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/zubair-ibne-zahir" target="_blank" class="hover:text-brand transition-colors"><i class="fab fa-linkedin"></i></a>
+                        <a href="mailto:zahirzubair740@gmail.com" class="hover:text-brand transition-colors"><i class="fas fa-envelope"></i></a>
+                           <a href="https://www.facebook.com/zubair.zahir.714" target="_blank" class="hover:text-brand transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form -->
+                    <form id="contactForm" class="space-y-6">
+                        <div class="group">
+                            <label class="block text-xs font-mono text-gray-500 mb-2 uppercase">Name</label>
+                            <input type="text" required class="w-full bg-dark-bg border border-gray-700 rounded-lg p-4 text-white focus:outline-none focus:border-brand transition-colors" placeholder="Your Name"/>
+                        </div>
+                        <div class="group">
+                            <label class="block text-xs font-mono text-gray-500 mb-2 uppercase">Email</label>
+                            <input type="email" required class="w-full bg-dark-bg border border-gray-700 rounded-lg p-4 text-white focus:outline-none focus:border-brand transition-colors" placeholder="Your Email"/>
+                        </div>
+                        <div class="group">
+                            <label class="block text-xs font-mono text-gray-500 mb-2 uppercase">Message</label>
+                            <textarea required rows="4" class="w-full bg-dark-bg border border-gray-700 rounded-lg p-4 text-white focus:outline-none focus:border-brand transition-colors" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand text-black font-bold py-4 rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. Footer -->
+    <footer class="bg-dark-bg border-t border-gray-900 py-12">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-bold text-white mb-2">Md Zubair Ibne Zahir</h3>
+                    <p class="text-gray-500 font-mono text-sm">Building my dream, one line of code at a time.</p>
+                </div>
+                
+                <div class="flex gap-6">
+                    <a href="https://portfolio-zubairz.netlify.app/" target="_blank" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-brand hover:bg-gray-800 transition-all">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/zubair-ibne-zahir-9b7b24256" target="_blank" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-brand hover:bg-gray-800 transition-all">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/zubairz40-z" target="_blank" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-brand hover:bg-gray-800 transition-all">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.facebook.com/zubair.zahir.714" target="_blank" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:text-brand hover:bg-gray-800 transition-all">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-900 text-center">
+                <p class="text-gray-600 text-sm font-mono">© 2026 Md Zubair Ibne Zahir. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Element -->
+    <div id="toast">Message Sent Successfully!</div>
+
+    <script>
+        // --- Project Data (UPDATED TITLES, STACKS & IMAGES) ---
+        const projectData = [
+            {
+                title: "MERN Stack • Rent a Car App",
+                img: "https://github.com/zubairz40-z/zubairz40-z/raw/main/Screenshot%202025-12-31%20185012.png",
+                stack: "React, Node, Express, MongoDB, Firebase",
+                description: "A full-stack rent-a-car application with responsive UI and authentication.",
+                liveLink: "https://travelease-fec80.web.app",
+                githubLink: "https://github.com/zubairz40-z",
+                challenges: "Managing state of complex booking forms was difficult. I also struggled a bit with connecting MongoDB database securely.",
+                improvements: "I hope to learn how to integrate a secure payment gateway (Stripe) and improve UI animations in the future."
+            },
+            {
+                title: "MERN Stack • Blood Donation App",
+                img: "https://github.com/zubairz40-z/zubairz40-z/raw/main/Screenshot%202025-12-31%20185425.png",
+                stack: "React, Node, Express, MongoDB, Firebase",
+                description: "A donation platform connecting donors and recipients with clean UI and auth.",
+                liveLink: "https://blood-drop-b7711.web.app",
+                githubLink: "https://github.com/zubairz40-z",
+                challenges: "Ensuring real-time updates for urgent blood requests was a challenge without WebSockets. I had to implement efficient polling strategies.",
+                improvements: "I want to add geolocation features to find donors nearby and add SMS notifications for urgent requests."
+            },
+            {
+                title: "Frontend • React + Tailwind + JSON",
+                img: "https://github.com/zubairz40-z/zubairz40-z/raw/main/Screenshot%202025-12-31%20185125ss.png",
+                stack: "React, Tailwind, JSON, Firebase",
+                description: "A responsive game discovery UI built with React, Tailwind, and JSON data.",
+                liveLink: "https://z-game-hub.netlify.app",
+                githubLink: "https://github.com/zubairz40-z",
+                challenges: "Handling large JSON datasets efficiently without causing lag in browser was a learning curve.",
+                improvements: "I plan to add a feature where users can log in and save their favorite games to a list."
+            }
+        ];
+
+        // --- Modal Functions ---
+        const modal = document.getElementById('projectModal');
+        const modalContent = document.getElementById('modalContent');
+
+        function openProject(index) {
+            const p = projectData[index];
+            modalContent.innerHTML = `
+                <div class="mb-6">
+                    <img src="${p.img}" alt="${p.title}" class="w-full h-64 object-cover rounded-lg border border-gray-700"/>
+                </div>
+                <h3 class="text-3xl font-bold text-white mb-2">${p.title}</h3>
+                <p class="text-brand font-mono text-sm mb-4">${p.stack}</p>
+                <p class="text-gray-300 leading-relaxed mb-6">${p.description}</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                        <h4 class="text-white font-bold mb-2 text-sm"><i class="fas fa-exclamation-triangle text-brand mr-2"></i>Challenges</h4>
+                        <p class="text-gray-400 text-sm">${p.challenges}</p>
+                    </div>
+                    <div class="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                        <h4 class="text-white font-bold mb-2 text-sm"><i class="fas fa-rocket text-brand mr-2"></i>Improvements</h4>
+                        <p class="text-gray-400 text-sm">${p.improvements}</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <a href="${p.liveLink}" target="_blank" class="flex-1 text-center bg-brand text-black font-bold py-3 rounded hover:bg-white transition-colors">
+                        <i class="fas fa-external-link-alt mr-2"></i>Live Site
+                    </a>
+                    <a href="${p.githubLink}" target="_blank" class="flex-1 text-center bg-gray-800 text-white font-bold py-3 rounded hover:bg-gray-700 transition-colors">
+                        <i class="fab fa-github mr-2"></i>GitHub Repo
+                    </a>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+        }
+
+        function closeProject() {
+            modal.classList.add('hidden');
+        }
+
+        // --- Mobile Menu Logic ---
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
+        menu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { menu.classList.add('hidden'); }); });
+
+        // --- Scroll Reveal Animation ---
+        const reveals = document.querySelectorAll('.reveal');
+        function revealOnScroll() {
+            const windowHeight = window.innerHeight;
+            reveals.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 150) reveal.classList.add('active');
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // --- Navbar Scroll Effect ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) { navbar.classList.add('py-2'); navbar.classList.remove('py-4'); }
+            else { navbar.classList.add('py-4'); navbar.classList.remove('py-2'); }
+        });
+
+        // --- Contact Form Simulation ---
+        const form = document.getElementById('contactForm');
+        const toast = document.getElementById('toast');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            btn.disabled = true;
+            setTimeout(() => {
+                form.reset();
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                toast.className = "show";
+                setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
